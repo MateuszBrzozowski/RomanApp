@@ -14,7 +14,11 @@ class MyApp extends StatelessWidget {
       title: 'Roman',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        fontFamily: 'Roboto',
+        useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        scaffoldBackgroundColor: Colors.white12,
+        textTheme: TextTheme(bodyMedium: TextStyle(color: Colors.white)),
       ),
       home: const HomePage(),
     );
