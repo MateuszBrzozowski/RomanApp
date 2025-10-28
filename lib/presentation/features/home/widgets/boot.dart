@@ -39,11 +39,11 @@ class Boot extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'od 20.06.2023 (45h)',
+                      'od ${controller.getStartTimeAsString()} ${controller.getElapsedHoursSinceStart()}',
                       style: TextStyle(color: Colors.grey[400]),
                     ),
                     Text(
-                      '9999.99 zł',
+                      '${controller.getEarnedForCurrentSession()} zł',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ],

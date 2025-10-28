@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:roman/presentation/features/home/data/settings_repository.dart';
 import 'package:roman/presentation/features/home/data/work_repository.dart';
 import 'package:roman/presentation/features/home/widgets/boot.dart';
 import 'package:roman/presentation/features/home/widgets/box.dart';
@@ -16,11 +17,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late final WorkController controller;
+  late final WorkController workController;
 
   @override
   void initState() {
-    controller = WorkController(WorkRepository());
+    workController = WorkController(
+      workRepository: WorkRepository(),
+      settingsRepository: SettingsRepository(),
+    );
     super.initState();
   }
 
@@ -36,28 +40,36 @@ class _HomePageState extends State<HomePage> {
         automaticallyImplyLeading: false,
         actions: [
           PopupMenu(
-            controller: controller,
+            controller: workController,
             onRefresh: () {
               setState(() {});
             },
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(height: 36),
-            Box(
-              child: Boot(
-                controller: controller,
-                onRefresh: () {
-                  setState(() {});
-                },
+      body: RefreshIndicator(
+        onRefresh: () async {
+          setState(() {});
+        },
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(height: 36),
+              Box(
+                child: Boot(
+                  controller: workController,
+                  onRefresh: () {
+                    setState(() {});
+                  },
+                ),
               ),
-            ),
-            Box(title: "Podsumowanie", child: Summary()),
-            Box(title: 'Ostatnie sesje', child: SessionSummary()),
-          ],
+              Box(
+                title: "Podsumowanie",
+                child: Summary(workController: workController),
+              ),
+              Box(title: 'Ostatnie sesje', child: SessionSummary()),
+            ],
+          ),
         ),
       ),
     );

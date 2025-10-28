@@ -6,6 +6,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   await Hive.openBox('workBox');
+  await Hive.openBox('settingsBox');
   runApp(const MyApp());
 }
 
