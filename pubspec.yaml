@@ -33,7 +33,7 @@ dependencies:
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   intl: ^0.20.2
-  isar_flutter_libs: ^4.0.0-dev.13
+  isar_flutter_libs: 3.1.0+1
   path_provider: ^2.1.0
   logger: ^2.6.2
 
@@ -44,6 +44,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  mockito: ^5.5.1
+  build_runner: ^2.10.1
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
